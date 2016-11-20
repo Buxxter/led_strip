@@ -196,8 +196,6 @@ class LedStrip(object):
 
 if __name__ == '__main__':
     import argparse
-    # import sys
-    # from utils.daemon import Daemon
 
     parser = argparse.ArgumentParser(add_help=True,
                                      usage='pidfile'
