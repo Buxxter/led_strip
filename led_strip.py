@@ -198,7 +198,7 @@ if __name__ == '__main__':
     import argparse
 
     parser = argparse.ArgumentParser(add_help=True,
-                                     usage='pidfile'
+                                     usage='led_strip.py {-v|--verbose [debug|info|warning|none]}'
                                      )
     parser.add_argument('-v', '--verbose', type=str, choices=['debug', 'info', 'warning', 'none'], default='warning')
     args = parser.parse_args()
