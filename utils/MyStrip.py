@@ -151,6 +151,24 @@ class MyStrip(Adafruit_NeoPixel):
         self._brightness = brightness
         super(MyStrip, self).setBrightness(brightness=self._brightness)
 
+    def setBrightnessSmooth(self, target_brightness, pause_sec=0.01):
+        counter = 0   # to prevent permanent loop
+        last_brightness = self._last_brightness if self._brightness == 0 else self._last_brightness
+        tmp_brightness = self._brightness
+
+        while tmp_brightness != target_brightness and counter <= 100:
+            if tmp_brightness > target_brightness:
+                tmp_brightness -= 1
+            else:
+                tmp_brightness += 1
+            super(MyStrip, self).setBrightness(brightness=tmp_brightness)
+            self.show()
+            time.sleep(pause_sec)
+            counter += 1
+
+        self._brightness = tmp_brightness
+        self._last_brightness = last_brightness
+
     def restore_brightness(self):
         self.setBrightness(self.last_brigthness)
 
